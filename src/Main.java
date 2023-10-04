@@ -3,7 +3,7 @@ public class Main {
     public static void main(String[] args) {
         String login = "java_skypro_go";
         String password = "21314";
-        String confirmPassword = "21314";
+        String confirmPassword = "21344";
         validate(login, password, confirmPassword);
     }
 
@@ -19,8 +19,18 @@ public class Main {
             if (!password.equals(confirmPassword)) {
                 throw new WrongPasswordException("Passwords do not match");
             }
-        } catch (WrongLoginException | WrongPasswordException | IllegalAccessException e) {
-            System.out.println(e.getMessage());
+        } catch (WrongLoginException | IllegalAccessException e) {
+            if (e.getMessage() != null) {
+                System.out.println(e.getMessage());
+            } else {
+                System.out.println("Произошла ошибка при вводе логина");
+            }
+        } catch (WrongPasswordException e) {
+            if (e.getMessage() != null) {
+                System.out.println(e.getMessage());
+            } else {
+                System.out.println("Произошла ошибка при вводе пароля");
+            }
         }
     }
 }
